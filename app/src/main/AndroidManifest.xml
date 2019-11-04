@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.bookmanager.SearchActivity" />
-        <activity android:name="com.example.bookmanager.BookActivity" />
-        <activity android:name="com.example.bookmanager.AuthorActivity" />
-        <activity android:name="com.example.bookmanager.MainActivity">
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".BookActivity" />
+        <activity android:name=".AuthorActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,11 +23,11 @@
 
         <provider
             android:authorities="com.example.bookmanager"
-            android:name="com.example.bookmanager.MyContentProvider"
+            android:name=".MyContentProvider"
             android:enabled="true"
             android:exported="true"
-            android:readPermission="com.example.sqlite1.READ_DATABASE"
-            android:writePermission="com.example.sqlite1.WRITE_DATABASE"></provider>
+            android:readPermission="com.example.bookmanager.READ_DATABASE"
+            android:writePermission="com.example.bookmanager.WRITE_DATABASE"></provider>
 
     </application>
 

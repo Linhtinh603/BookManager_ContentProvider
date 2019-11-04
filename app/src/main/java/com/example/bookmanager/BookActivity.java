@@ -75,9 +75,9 @@ public class BookActivity extends AppCompatActivity {
                 contentValues.put("id_book",et_idbook.getText().toString());
                 contentValues.put("title", et_title.getText().toString());
 //                contentValues.put("id_author",et_idauthor.getText().toString());
-                Author author = (Author) spinnerAuthor.getSelectedItem();
-                int authorId = author.getId_Author();
-                contentValues.put("id_author",authorId);
+//                Author author = (Author) spinnerAuthor.getSelectedItem();
+////                int authorId = author.getId_Author();
+////                contentValues.put("id_author",authorId);
                 try {
                     Uri insert_uri = getContentResolver().insert(MyContentProvider.CONTENT_URI,contentValues);
                     Toast.makeText(getApplicationContext(),"Lưu thành công",Toast.LENGTH_SHORT).show();
@@ -105,10 +105,10 @@ public class BookActivity extends AppCompatActivity {
                 Uri content_uri = Uri.parse(uri);
                 ContentValues values = new ContentValues();
                 values.put("title", et_title.getText().toString());
-//                values.put("id_author", Integer.parseInt(et_idauthor.getText().toString()));
-                Author author = (Author) spinnerAuthor.getSelectedItem();
-                int authorId = author.getId_Author();
-                values.put("id_author",authorId);
+                values.put("id_author", Integer.parseInt(et_idauthor.getText().toString()));
+//                Author author = (Author) spinnerAuthor.getSelectedItem();
+//                int authorId = author.getId_Author();
+//                values.put("id_author",authorId);
                 int updated = getContentResolver().update(content_uri,values,null,null);
                 if( updated > 0 ){
                     Toast.makeText(getApplicationContext(),"Cập nhật dữ liệu thành công",Toast.LENGTH_SHORT).show();
@@ -136,13 +136,13 @@ public class BookActivity extends AppCompatActivity {
                 Log.v("Book", book.toString());
                 et_idbook.setText(String.valueOf(book.getId_Book()));
                 et_title.setText(book.getTitle());
-//                et_idauthor.setText(String.valueOf(book.getId_Author()));
-                Author author = dbHelper.getAuthorById(String.valueOf(book.getId_Author()));
-                int authorPos =  authorArrayAdapter.getPosition(author);
-                Log.v("author",author.toString());
-                Log.v("pos",String.valueOf(authorPos));
-                spinnerAuthor.setAdapter(authorArrayAdapter);
-                spinnerAuthor.setSelection(1,false);
+                et_idauthor.setText(String.valueOf(book.getId_Author()));
+//                Author author = dbHelper.getAuthorById(String.valueOf(book.getId_Author()));
+//                int authorPos =  authorArrayAdapter.getPosition(author);
+//                Log.v("author",author.toString());
+//                Log.v("pos",String.valueOf(authorPos));
+//                spinnerAuthor.setAdapter(authorArrayAdapter);
+//                spinnerAuthor.setSelection(1,false);
                 bt_delete.setEnabled(true);
                 bt_update.setEnabled(true);
                 bt_cancle.setEnabled(true);
@@ -159,13 +159,13 @@ public class BookActivity extends AppCompatActivity {
         bt_cancle = (Button)findViewById(R.id.btnCancle);
         bt_update = (Button)findViewById(R.id.btnUpdate);
         bt_exit = (Button)findViewById(R.id.btnExit);
-        spinnerAuthor = findViewById(R.id.spinner);
+//        spinnerAuthor = findViewById(R.id.spinner);
         dbHelper = new DBHelper(this);
 
-        ArrayList<Author> authors = new ArrayList<>();
-        authors = dbHelper.getAllAuthor();
-        authorArrayAdapter = new ArrayAdapter<Author>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,authors);
-        spinnerAuthor.setAdapter(authorArrayAdapter);
+//        ArrayList<Author> authors = new ArrayList<>();
+//        authors = dbHelper.getAllAuthor();
+//        authorArrayAdapter = new ArrayAdapter<Author>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item,authors);
+//        spinnerAuthor.setAdapter(authorArrayAdapter);
         lv_display = findViewById(R.id.lv_display);
     }
 
@@ -193,6 +193,7 @@ public class BookActivity extends AppCompatActivity {
         et_idbook.getText().clear();
         et_title.getText().clear();
         et_idauthor.getText().clear();
+        et_idbook.setEnabled(true);
     }
 
     private void confimDelete(){
